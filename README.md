@@ -1,8 +1,5 @@
 ### **📂 Root Folder Files**  
-#### **1. `README.md`**  
-**Purpose**: Project overview, live demo links, and setup instructions.  
 
-```markdown
 # 📻 WeatherBand API Documentation  
 *RESTful weather forecasts with a retro twist—built for developers, documented for clarity.*  
 
@@ -14,7 +11,7 @@
 - **Interactive Docs**: Try the API via [Swagger UI](https://johnbeatty575.github.io/WeatherBand-API-Docs).  
 
 ## Explore  
-- [📚 Live Documentation](https://johnbeatty575.github.io/WeatherBand-API-Docs)  
+- [📚 Live Documentation](https://github.com/johnbeatty575/WeatherBand-API-Docs/tree/main/docs)
 - [🔍 OpenAPI Spec](./openapi.yaml)  
 
 ## Quick Start  
@@ -30,4 +27,3 @@ git clone https://github.com/johnbeatty575/WeatherBand-API-Docs.git
 
 ---
 *Documentation by [John Beatty](https://github.com/johnbeatty575).*  
-```

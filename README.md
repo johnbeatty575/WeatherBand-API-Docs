@@ -11,7 +11,7 @@
 - **Interactive Docs**: Try the API via [Swagger UI](https://johnbeatty575.github.io/WeatherBand-API-Docs).  
 
 ## Explore  
-- [📚 Live Documentation](https://johnbeatty575.github.io/WeatherBand-API-Docs)  
+- [📚 Live Documentation]((https://github.com/johnbeatty575/WeatherBand-API-Docs/tree/main/docs))  
 - [🔍 OpenAPI Spec](./openapi.yaml)  
 
 ## Quick Start  

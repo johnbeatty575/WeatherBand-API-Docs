@@ -1,0 +1,64 @@
+openapi: 3.0.0
+info:
+  title: WeatherBand API
+  description: "Weather forecasts with a nostalgic twist."
+  version: 1.0.0
+  contact:
+    name: John Beatty
+    url: https://github.com/johnbeatty575
+servers:
+  - url: https://api.weatherband.com/v1
+paths:
+  /forecast:
+    get:
+      summary: Get weather forecast
+      parameters:
+        - name: location
+          in: query
+          required: true
+          schema: { type: string }
+          example: "Berlin"
+        - name: format
+          in: query
+          schema: { type: string, enum: [json, retro], default: json }
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example: { 
+                "location": "Berlin", 
+                "temp": 14, 
+                "conditions": "partly_cloudy",
+                "alerts": []
+              }
+            text/plain:
+              example: "📻 *crackle* ... Berlin: 14°C, partly cloudy ... *static*"
+  /alerts/subscribe:
+    post:
+      summary: Subscribe to SMS alerts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: string
+                location:
+                  type: string
+                format:
+                  type: string
+                  enum: [json, retro]
+              example: {
+                "phone": "+1234567890",
+                "location": "Berlin",
+                "format": "retro"
+              }
+      responses:
+        '200':
+          description: Subscription confirmed
+          content:
+            application/json:
+              example: { "success": true, "message": "Subscribed to Berlin alerts." }

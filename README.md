@@ -1,8 +1,5 @@
 ### **📂 Root Folder Files**  
-#### **1. `README.md`**  
-**Purpose**: Project overview, live demo links, and setup instructions.  
 
-```markdown
 # 📻 WeatherBand API Documentation  
 *RESTful weather forecasts with a retro twist—built for developers, documented for clarity.*  
 
@@ -30,4 +27,3 @@ git clone https://github.com/johnbeatty575/WeatherBand-API-Docs.git
 
 ---
 *Documentation by [John Beatty](https://github.com/johnbeatty575).*  
-```

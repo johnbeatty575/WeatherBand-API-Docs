@@ -1,33 +1,91 @@
-### **📂 `docs/index.md`**  
-**Purpose**: The landing page for live documentation (hosted on GitHub Pages).  
-
 # Welcome to WeatherBand API  
-*"Like a weather radio for your code."*  
+*"Where Houston's humidity meets Seattle's drizzle—now with retro radio flair!"*  
 
-<!--![API Demo](./assets/api-demo.gif) *← Add a screencast of API requests (use [ScreenToGif](https://www.screentogif.com/))*-->
+<div class="demo-container">
+  <div class="controls">
+    <select id="location-select">
+      <option value="Houston">Houston</option>
+      <option value="Seattle">Seattle</option>
+    </select>
+    <button onclick="fetchForecast()">Get Forecast</button>
+    <label>
+      <input type="checkbox" id="retro-format"> Retro Mode
+    </label>
+  </div>
 
-## Try It Live  
-<button onclick="fetchForecast()">Get Berlin Forecast (Retro)</button>
-<pre id="api-response">Response will appear here</pre>
+  <div class="response" id="api-response">
+    <!-- Response will appear here -->
+  </div>
+</div>
 
 <script>
   async function fetchForecast() {
-    const response = await fetch('https://api.weatherband.com/v1/forecast?location=Berlin&format=retro');
-    document.getElementById('api-response').innerText = await response.text();
+    const location = document.getElementById('location-select').value;
+    const isRetro = document.getElementById('retro-format').checked;
+    
+    try {
+      const response = await fetch(
+        `https://67ed51b04387d9117bbd31f6.mockapi.io/api/v1/forecast?location=${location}`
+      );
+      const data = await response.json();
+
+      const output = isRetro 
+        ? formatRetroResponse(data)
+        : formatJsonResponse(data);
+
+      document.getElementById('api-response').innerHTML = output;
+    } catch (error) {
+      document.getElementById('api-response').innerHTML = 
+        `<p class="error">📡 *static* ... Unable to tune in ... *crackle*</p>`;
+    }
+  }
+
+  function formatRetroResponse(data) {
+    return `
+      <div class="retro-response">
+        <p>📻 <em>*crackle*</em> ... ${data.location} weather report ...</p>
+        <p>Temperature: ${data.temp}°C, ${data.conditions}</p>
+        <p><em>${data.poetic_summary}</em></p>
+        <p><em>*static*</em></p>
+      </div>
+    `;
+  }
+
+  function formatJsonResponse(data) {
+    return `
+      <pre>${JSON.stringify(data, null, 2)}</pre>
+    `;
   }
 </script>
 
-## Why WeatherBand?  
-This API delivers weather data in **two formats**:  
-1. **Standard JSON**: For apps and scripts.  
-2. **Retro Radio Broadcasts**: For fun integrations (Discord bots, SMS alerts).  
+<style>
+  .demo-container {
+    border: 1px solid #eee;
+    padding: 1rem;
+    margin: 2rem 0;
+    border-radius: 8px;
+  }
+  .controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    align-items: center;
+  }
+  .retro-response {
+    font-family: monospace;
+    color: #5a3921;
+    background: #f5f5dc;
+    padding: 1rem;
+    border-left: 3px solid #8b4513;
+  }
+  .error {
+    color: #d32f2f;
+  }
+</style>
 
-## Quick Links  
-- [🚀 Quick Start Guide](./quickstart.md)  
-- [📡 API Reference](./endpoints.md)  
-- [💡 Examples](./examples.md)  
+## Key Features
+- **Real MockAPI.io integration**
+- **Toggle between JSON and retro views**
+- **Mobile-friendly interface**
 
-**Pro Tip**: Use `format=retro` for chatbots or voice apps!  
-
----
-*Documentation by [John Beatty](https://github.com/johnbeatty575).*  
+[Get Started](./quickstart.md) | [API Reference](./endpoints.md)

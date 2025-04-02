@@ -1,29 +1,61 @@
-### **📂 Root Folder Files**  
-
 # 📻 WeatherBand API Documentation  
-*RESTful weather forecasts with a retro twist—built for developers, documented for clarity.*  
+*Houston's heat and Seattle's drizzle—now with interactive JavaScript demos!*  
 
-<!-- ![WeatherBand Logo](./docs/assets/weatherband-logo.png) -->
+![WeatherBand Logo](./docs/assets/weatherband-logo.png)  
 
-## Features  
-- **Retro Mode**: Get forecasts as vintage radio broadcasts (`?format=retro`).  
-- **Zero Backend Needed**: Mocked examples with [Mock Service Worker (MSW)](https://mswjs.io/).  
- <!-- **Interactive Docs**: Try the API via [Swagger UI](https://johnbeatty575.github.io/WeatherBand-API-Docs). -->
+## 🌟 Features  
+- **Real MockAPI.io Integration**:  
+  ```javascript
+  fetch('https://67ed51b04387d9117bbd31f6.mockapi.io/api/v1/forecast?location=Houston')
+    .then(res => res.json())
+    .then(data => console.log(data.poetic_summary));
+  ```
+- **Client-Side Retro Formatting**: Toggle between JSON and vintage radio styles  
+- **Web Component**: Drop-in `<weather-band>` widget for websites  
+- **Zero Backend**: 100% frontend JavaScript implementation  
 
-## Explore  
-- [📚 Live Documentation](https://github.com/johnbeatty575/WeatherBand-API-Docs/tree/main/docs)
-- [🔍 OpenAPI Spec](./openapi.yaml)  
+## 🚀 Try It Live  
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/web-platform-jsxqef?file=index.html)  
+*Example dashboard using the WeatherBand API*
 
-## Quick Start  
-```bash
-# Clone the repo
-git clone https://github.com/johnbeatty575/WeatherBand-API-Docs.git
+## 📚 Documentation  
+| Guide | Description |  
+|-------|-------------|  
+| [Interactive Demo](./docs/index.md) | Live API playground with retro toggle |  
+| [Quick Start](./docs/quickstart.md) | Copy-pasteable JavaScript snippets |  
+| [API Reference](./docs/endpoints.md) | Complete endpoint documentation |  
+| [Advanced Examples](./docs/examples.md) | Dashboard & web component implementations |  
+
+## 🛠 Built With  
+```text
+MockAPI.io    => Live mock endpoints
+JavaScript    => Client-side retro formatting
+Web Components=> Reusable <weather-band> element
+GitHub Pages  => Hosted documentation
 ```
 
-## Built With  
-- OpenAPI 3.0  
-- GitHub Pages + Markdown  
-- MSW (Mock Service Worker)  
+## 💻 Development Setup  
+1. Clone the repo:  
+   ```bash
+   git clone https://github.com/yourusername/WeatherBand-API-Docs.git
+   ```
+2. Test locally:  
+   - Open `docs/index.html` in browser  
+   - Use Chrome DevTools to experiment with the API  
+
+## 📡 Example Request  
+```javascript
+// Get Seattle's poetic forecast
+async function getSeattleWeather() {
+  const response = await fetch(
+    'https://67ed51b04387d9117bbd31f6.mockapi.io/api/v1/forecast?location=Seattle'
+  );
+  const data = await response.json();
+  return `📻 *crackle* ${data.poetic_summary} *static*`;
+}
+```
 
 ---
-*Documentation by [John Beatty](https://github.com/johnbeatty575).*  
+*Documentation by [Your Name](https://github.com/yourusername)*  
+*Weather data provided by MockAPI.io*
+```

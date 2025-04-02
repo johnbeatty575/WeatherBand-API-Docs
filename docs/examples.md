@@ -1,115 +1,232 @@
-# 🌟 WeatherBand API Examples  
-*Practical use cases for the retro weather API—because forecasts should be fun.*  
+# Advanced JavaScript Examples
+*Practical implementations using the WeatherBand API*
 
----
+## 1. Dynamic Weather Dashboard
+```html
+<div id="weather-dashboard">
+  <h2>WeatherBand Dashboard</h2>
+  <div class="city-selector">
+    <select id="city-select">
+      <option value="Houston">Houston</option>
+      <option value="Seattle">Seattle</option>
+    </select>
+    <button id="refresh-btn">Get Weather</button>
+    <label>
+      <input type="checkbox" id="retro-toggle"> Retro Mode
+    </label>
+  </div>
+  <div class="weather-display" id="weather-display"></div>
+</div>
 
-## **1. Basic Usage**  
-### **Get a Forecast (Standard JSON)**  
-```bash
-curl "https://api.weatherband.com/v1/forecast?location=Paris"
-```  
-**Response**:  
-```json
-{
-  "location": "Paris, FR",
-  "temp": 18,
-  "conditions": "sunny",
-  "alerts": []
-}
-```
+<script>
+  document.getElementById('refresh-btn').addEventListener('click', async () => {
+    const city = document.getElementById('city-select').value;
+    const retroMode = document.getElementById('retro-toggle').checked;
+    
+    try {
+      const response = await fetch(
+        `https://67ed51b04387d9117bbd31f6.mockapi.io/api/v1/forecast?location=${city}`
+      );
+      const data = await response.json();
+      
+      const display = document.getElementById('weather-display');
+      display.innerHTML = retroMode ? createRetroDisplay(data) : createModernDisplay(data);
+      
+    } catch (error) {
+      document.getElementById('weather-display').innerHTML = 
+        `<div class="error">📡 *static* Connection lost: ${error.message}</div>`;
+    }
+  });
 
-### **Get a Forecast (Retro Mode)**  
-```bash
-curl "https://api.weatherband.com/v1/forecast?location=Paris&format=retro"
-```  
-**Response**:  
-```plaintext
-📻 *crackle* ... Paris: 18°C, sunny skies ... *static*  
-```
+  function createModernDisplay(data) {
+    return `
+      <div class="modern-card">
+        <h3>${data.location} Weather</h3>
+        <div class="temp">${data.temp}°C</div>
+        <div class="conditions">${data.conditions}</div>
+        <p class="summary">${data.poetic_summary}</p>
+      </div>
+    `;
+  }
 
----
+  function createRetroDisplay(data) {
+    return `
+      <div class="retro-terminal">
+        <div class="scanlines"></div>
+        <pre>📻 WEATHERBAND TRANSMISSION RECEIVED
 
-## **2. Code Integrations**  
-### **Python Script**  
-```python
-import requests
+LOCATION: ${data.location}
+TEMPERATURE: ${data.temp}°C
+CONDITIONS: ${data.conditions.toUpperCase()}
 
-response = requests.get(
-  "https://api.weatherband.com/v1/forecast",
-  params={"location": "Tokyo", "format": "retro"}
-)
-print(response.text)  # Output: "📻 *crackle* ... Tokyo: 22°C ..."
-```
+> ${data.poetic_summary}
 
-### **JavaScript (Fetch API)**  
-```javascript
-fetch("https://api.weatherband.com/v1/forecast?location=New+York&format=retro")
-  .then(response => response.text())
-  .then(data => console.log(data)); 
-  // Output: "📻 *crackle* ... New York: 12°C ..."
-```
+[END TRANSMISSION]</pre>
+      </div>
+    `;
+  }
+</script>
 
-### **Postman Collection**  
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://www.postman.com/your-collection-link) *(test link TBD)*  
-
----
-
-## **3. Fun Projects**  
-### **Discord Bot (Node.js)**  
-```javascript
-const discord = require('discord.js');
-const bot = new discord.Client();
-
-bot.on('message', async (msg) => {
-  if (msg.content === '!weather') {
-    const response = await fetch(
-      "https://api.weatherband.com/v1/forecast?location=Berlin&format=retro"
+<style>
+  #weather-dashboard {
+    font-family: sans-serif;
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  
+  .city-selector {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    align-items: center;
+  }
+  
+  .modern-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+  
+  .retro-terminal {
+    background: #1a1a1a;
+    color: #00ff00;
+    padding: 1.5rem;
+    position: relative;
+    font-family: monospace;
+    border-radius: 4px;
+  }
+  
+  .scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 1px,
+      rgba(0,255,0,0.05) 1px,
+      rgba(0,255,0,0.05) 2px
     );
-    msg.reply(await response.text()); // Replies with retro forecast!
+    pointer-events: none;
   }
-});
+</style>
 ```
 
-### **SMS Alerts (Twilio + Python)**  
-```python
-from twilio.rest import Client
-import requests
-
-weather = requests.get(
-  "https://api.weatherband.com/v1/forecast?location=San+Francisco&format=retro"
-).text
-
-client = Client("YOUR_TWILIO_SID", "YOUR_TWILIO_AUTH_TOKEN")
-client.messages.create(
-  body=weather,  # "📻 *crackle* ... San Francisco: 15°C ..."
-  from_="+1234567890",
-  to="+0987654321"
-)
-
----
-
-## **4. Error Handling**  
-### **Invalid Location**  
-```bash
-curl "https://api.weatherband.com/v1/forecast?location=UnknownCity"
-```  
-**Response**:  
-```json
-{
-  "error": {
-    "code": 404,
-    "message": "Frequency lost. Location not found.",
-    "details": "*static* Check spelling. *crackle*"
+## 2. Weather Widget for Websites
+```javascript
+class WeatherBandWidget extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.innerHTML = `
+      <style>
+        :host {
+          display: block;
+          font-family: sans-serif;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          padding: 1rem;
+          max-width: 300px;
+        }
+        .loading {
+          color: #666;
+          font-style: italic;
+        }
+        .error {
+          color: #d32f2f;
+        }
+      </style>
+      <div id="widget-content">
+        <div class="loading">Loading weather...</div>
+      </div>
+    `;
   }
+
+  async connectedCallback() {
+    const location = this.getAttribute('location') || 'Houston';
+    const retro = this.hasAttribute('retro');
+    
+    try {
+      const response = await fetch(
+        `https://67ed51b04387d9117bbd31f6.mockapi.io/api/v1/forecast?location=${location}`
+      );
+      const data = await response.json();
+      
+      this.shadowRoot.getElementById('widget-content').innerHTML = retro
+        ? this.createRetroView(data)
+        : this.createModernView(data);
+        
+    } catch (error) {
+      this.shadowRoot.getElementById('widget-content').innerHTML = `
+        <div class="error">Weather data unavailable</div>
+      `;
+    }
+  }
+
+  createModernView(data) {
+    return `
+      <h3>${data.location} Weather</h3>
+      <div style="font-size: 2rem;">${data.temp}°C</div>
+      <div>${data.conditions}</div>
+      <p><small>${data.poetic_summary}</small></p>
+    `;
+  }
+
+  createRetroView(data) {
+    return `
+      <div style="font-family: monospace; color: #5a3921; background: #f5f5dc; padding: 0.5rem;">
+        <div>📻 *crackle*</div>
+        <div>${data.location.toUpperCase()} WEATHER</div>
+        <div>${data.temp}°C ${data.conditions}</div>
+        <div>*${data.poetic_summary}*</div>
+        <div>*static*</div>
+      </div>
+    `;
+  }
+}
+
+customElements.define('weather-band', WeatherBandWidget);
+```
+
+## 3. Using the Web Component
+```html
+<!-- Modern style -->
+<weather-band location="Seattle"></weather-band>
+
+<!-- Retro style -->
+<weather-band location="Houston" retro></weather-band>
+```
+
+## 4. Error Handling Pattern
+```javascript
+async function getWeatherWithRetry(location, retries = 3) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const response = await fetch(
+        `https://67ed51b04387d9117bbd31f6.mockapi.io/api/v1/forecast?location=${location}`
+      );
+      if (!response.ok) throw new Error('API error');
+      return await response.json();
+    } catch (error) {
+      if (i === retries - 1) throw error;
+      await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1)));
+    }
+  }
+}
+
+// Usage:
+try {
+  const weather = await getWeatherWithRetry('Seattle');
+  console.log('Weather data:', weather);
+} catch (error) {
+  console.error('Failed after retries:', error);
 }
 ```
 
----
-
-## **🚀 Pro Tips**  
-- **Retro Mode**: Perfect for chatbots, SMS, or voice apps!  
-- **Timezone Support**: Add `&tz=UTC` to requests (e.g., `...forecast?location=London&tz=UTC`).  
-- **Rate Limits**: Free tier allows 100 calls/day.  
-
-[Back to API Reference →](./endpoints.md)  
+[Back to API Reference](./endpoints.md) | [View Quick Start Guide](./quickstart.md)
 ```

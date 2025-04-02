@@ -1,53 +1,93 @@
-### **📂 `docs/quickstart.md`**  
-**Purpose**: A fast-paced onboarding guide to get developers working with your API immediately.
+# WeatherBand API Quick Start  
+*Get started in minutes with our interactive examples.*
 
+## 1. Basic API Request (JavaScript)
 
-# ⚡ WeatherBand API Quick Start  
-*Get up and running in under 2 minutes.*  
+```html
+<!-- Include this in your HTML -->
+<button onclick="fetchWeather('Houston')">Get Houston Forecast</button>
+<pre id="weather-output"></pre>
 
-## 1. Get Your API Key (Mocked)  
-```bash
-# Simulate signing up (no real backend needed)
-curl -X POST https://api.weatherband.com/v1/signup \
-  -H "Content-Type: application/json" \
-  -d '{"email":"your@email.com"}'
-```
-*Returns:*  
-```json
-{"api_key": "WB-123456", "rate_limit": "100/day"}
-```
-
-## 2. Make Your First Request  
-### Basic Forecast (JSON)
-```bash
-curl "https://api.weatherband.com/v1/forecast?location=Tokyo&api_key=WB-123456"
+<script>
+  async function fetchWeather(location) {
+    const response = await fetch(
+      `https://67ed51b04387d9117bbd31f6.mockapi.io/api/v1/forecast?location=${location}`
+    );
+    const data = await response.json();
+    document.getElementById('weather-output').textContent = 
+      JSON.stringify(data, null, 2);
+  }
+</script>
 ```
 
-### Retro Mode (Text)
-```bash
-curl "https://api.weatherband.com/v1/forecast?location=Tokyo&format=retro&api_key=WB-123456"
+## 2. Retro Mode Implementation
+
+```javascript
+function formatRetro(forecast) {
+  return `📻 *crackle*\nLocation: ${forecast.location}\n` +
+         `Temp: ${forecast.temp}°C\n` +
+         `Conditions: ${forecast.conditions}\n` +
+         `*${forecast.poetic_summary}*\n` +
+         `*static*`;
+}
+
+// Usage:
+const response = await fetch('https://67ed51b04387d9117bbd31f6.mockapi.io/api/v1/forecast?location=Seattle');
+const data = await response.json();
+console.log(formatRetro(data));
 ```
 
-## 3. Subscribe to Alerts  
-```bash
-curl -X POST https://api.weatherband.com/v1/alerts/subscribe \
-  -H "Content-Type: application/json" \
-  -d '{
-    "phone": "+15551234567",
-    "location": "Tokyo",
-    "format": "retro",
-    "api_key": "WB-123456"
-  }'
+## 3. Complete Example (HTML + JS)
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WeatherBand Demo</title>
+  <style>
+    .retro { 
+      font-family: monospace;
+      white-space: pre;
+      background: #f5f5dc;
+      padding: 1rem;
+      border-left: 3px solid #8b4513;
+    }
+  </style>
+</head>
+<body>
+  <select id="city-select">
+    <option value="Houston">Houston</option>
+    <option value="Seattle">Seattle</option>
+  </select>
+  <button onclick="getWeather()">Get Forecast</button>
+  <div id="output" class="retro"></div>
+
+  <script>
+    async function getWeather() {
+      const city = document.getElementById('city-select').value;
+      const response = await fetch(
+        `https://67ed51b04387d9117bbd31f6.mockapi.io/api/v1/forecast?location=${city}`
+      );
+      const data = await response.json();
+      
+      document.getElementById('output').textContent = formatRetro(data);
+    }
+
+    function formatRetro(forecast) {
+      return `📻 *crackle*\n=== ${forecast.location} ===\n` +
+             `Temperature: ${forecast.temp}°C\n` +
+             `Conditions: ${forecast.conditions}\n\n` +
+             `Forecast: ${forecast.poetic_summary}\n` +
+             `*static*`;
+    }
+  </script>
+</body>
+</html>
 ```
 
-## Next Steps  
-- [Explore all API endpoints →](./endpoints.md)  
-- [See practical code examples →](./examples.md)  
+## Next Steps
+- [Explore API endpoints](./endpoints.md)
+- [See more examples](./examples.md)
 
----
-*Pro Tip:* Store your API key in an environment variable:  
-```bash
-export WB_API_KEY="WB-123456"
-# Then use in requests:
-curl "https://api.weatherband.com/v1/forecast?location=Tokyo&api_key=$WB_API_KEY"
+<small>Pro Tip: Use Chrome DevTools to test these snippets directly!</small>
 ```

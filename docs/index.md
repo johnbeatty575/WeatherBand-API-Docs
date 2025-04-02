@@ -1,7 +1,6 @@
 ### **📂 `docs/index.md`**  
 **Purpose**: The landing page for your live documentation (hosted on GitHub Pages).  
 
-```markdown
 # Welcome to WeatherBand API  
 *"Like a weather radio for your code."*  
 

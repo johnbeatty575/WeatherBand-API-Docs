@@ -1,16 +1,13 @@
 ### **📂 `docs/endpoints.md`**  
 **Purpose**: Comprehensive API reference for all endpoints and parameters.
 
-```markdown
 # 📡 WeatherBand API Endpoints  
 *Complete technical reference for all API capabilities.*  
 
 ---
 
 ## **Base URL**  
-```
 https://api.weatherband.com/v1
-```
 
 ---
 

@@ -1,10 +1,10 @@
 ### **📂 `docs/index.md`**  
-**Purpose**: The landing page for your live documentation (hosted on GitHub Pages).  
+**Purpose**: The landing page for live documentation (hosted on GitHub Pages).  
 
 # Welcome to WeatherBand API  
 *"Like a weather radio for your code."*  
 
-![API Demo](./assets/api-demo.gif) *← Add a screencast of API requests (use [ScreenToGif](https://www.screentogif.com/))*
+<!--![API Demo](./assets/api-demo.gif) *← Add a screencast of API requests (use [ScreenToGif](https://www.screentogif.com/))*-->
 
 ## Try It Now  
 ```bash

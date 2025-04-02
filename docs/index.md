@@ -6,11 +6,16 @@
 
 <!--![API Demo](./assets/api-demo.gif) *← Add a screencast of API requests (use [ScreenToGif](https://www.screentogif.com/))*-->
 
-## Try It Now  
-```bash
-# Retro mode (text response)
-curl "https://api.weatherband.com/v1/forecast?location=Berlin&format=retro"
-```
+## Try It Live  
+<button onclick="fetchForecast()">Get Berlin Forecast (Retro)</button>
+<pre id="api-response">Response will appear here</pre>
+
+<script>
+  async function fetchForecast() {
+    const response = await fetch('https://api.weatherband.com/v1/forecast?location=Berlin&format=retro');
+    document.getElementById('api-response').innerText = await response.text();
+  }
+</script>
 
 ## Why WeatherBand?  
 This API delivers weather data in **two formats**:  

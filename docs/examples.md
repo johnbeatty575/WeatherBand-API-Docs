@@ -85,7 +85,6 @@ client.messages.create(
   from_="+1234567890",
   to="+0987654321"
 )
-```
 
 ---
 

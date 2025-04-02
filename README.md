@@ -1,7 +1,7 @@
 # 📻 WeatherBand API Documentation  
 *Houston's heat and Seattle's drizzle—now with interactive JavaScript demos!*  
 
-![WeatherBand Logo](./docs/assets/weatherband-logo.png)  
+<!--![WeatherBand Logo](./docs/assets/weatherband-logo.png) logo coming soon... -->
 
 ## 🌟 Features  
 - **Real MockAPI.io Integration**:  
@@ -56,6 +56,6 @@ async function getSeattleWeather() {
 ```
 
 ---
-*Documentation by [Your Name](https://github.com/yourusername)*  
+*Documentation by [John Beatty](https://github.com/johnbeatty575/)*  
 *Weather data provided by MockAPI.io*
 ```

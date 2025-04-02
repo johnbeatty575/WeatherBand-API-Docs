@@ -50,7 +50,7 @@ fetch("https://api.weatherband.com/v1/forecast?location=New+York&format=retro")
 ```
 
 ### **Postman Collection**  
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://www.postman.com/your-collection-link) *(Replace with your link)*  
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://www.postman.com/your-collection-link) *(test link TBD)*  
 
 ---
 

@@ -25,7 +25,7 @@
 
 
 ### **💡 Why This Stands Out**  
-> *"Unlike generic API docs, this project demonstrates **real-world technical writing** with:  
+> Unlike generic API docs, this project demonstrates **real-world technical writing** with:  
 > - Client-side interactivity  
 > - Error handling examples  
 > - Responsive design  

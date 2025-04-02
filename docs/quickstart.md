@@ -1,7 +1,7 @@
 ### **📂 `docs/quickstart.md`**  
 **Purpose**: A fast-paced onboarding guide to get developers working with your API immediately.
 
-```markdown
+
 # ⚡ WeatherBand API Quick Start  
 *Get up and running in under 2 minutes.*  
 

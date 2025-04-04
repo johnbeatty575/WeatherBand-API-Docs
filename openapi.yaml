@@ -5,7 +5,7 @@ info:
   version: 1.0.0
   contact:
     name: Your Name
-    url: https://github.com/yourusername
+    url: https://github.com/johnbeatty575
 servers:
   - url: https://67ed51b04387d9117bbd31f6.mockapi.io/api/v1
 paths:

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WeatherBand API Demo</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+    .controls { display: flex; gap: 10px; margin: 20px 0; align-items: center; }
+    #response { border: 1px solid #eee; padding: 15px; min-height: 100px; }
+    .retro { background: #f5f5dc; color: #5a3921; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <h1>📻 WeatherBand API</h1>
+  
+  <div class="controls">
+    <select id="location">
+      <option value="Houston">Houston</option>
+      <option value="Seattle">Seattle</option>
+    </select>
+    <button id="fetch">Get Forecast</button>
+    <label>
+      <input type="checkbox" id="retro"> Retro Mode
+    </label>
+  </div>
+  
+  <div id="response"></div>
+  
+  <nav>
+    <p><a href="./quickstart.md">Quick Start Guide</a> | 
+       <a href="./endpoints.md">API Reference</a></p>
+  </nav>
+
+  <script>
+    document.getElementById('fetch').addEventListener('click', async () => {
+      const location = document.getElementById('location').value;
+      const isRetro = document.getElementById('retro').checked;
+      
+      try {
+        const res = await fetch(
+          `https://67ed51b04387d9117bbd31f6.mockapi.io/api/v1/forecast?location=${location}`
+        );
+        const data = await res.json();
+        
+        const responseDiv = document.getElementById('response');
+        responseDiv.className = isRetro ? 'retro' : '';
+        responseDiv.innerHTML = isRetro
+          ? `📻 <em>*crackle*</em><br>${data.location}: ${data.temp}°C<br>${data.conditions}<br><em>${data.poetic_summary}</em><br><em>*static*</em>`
+          : `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+      } catch (err) {
+        document.getElementById('response').innerHTML = 
+          '<p class="error">📡 *static* Connection failed</p>';
+      }
+    });
+  </script>
+</body>
+</html>

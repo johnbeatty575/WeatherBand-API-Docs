@@ -42,14 +42,14 @@
 - **Web Component**: Drop-in `<weather-band>` widget for websites  
 - **Zero Backend**: 100% frontend JavaScript implementation  
 
-## 🚀 Try It Live  
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/web-platform-jsxqef?file=index.html)  
-*Example dashboard using the WeatherBand API*
+## Live Demo
+[Interactive Demo](https://johnbeatty575.github.io/WeatherBand-API-Docs/index.html)  
+[Documentation Hub](https://johnbeatty575.github.io/WeatherBand-API-Docs/index.md)
 
 ## 📚 Documentation  
 | Guide | Description |  
 |-------|-------------|  
-| [Interactive Demo](./docs/index.md) | Live API playground with retro toggle |  
+| [Interactive Demo](./docs/index.html) | Live API playground with retro toggle |  
 | [Quick Start](./docs/quickstart.md) | Copy-pasteable JavaScript snippets |  
 | [API Reference](./docs/endpoints.md) | Complete endpoint documentation |  
 | [Advanced Examples](./docs/examples.md) | Dashboard & web component implementations |  
@@ -65,7 +65,7 @@ GitHub Pages  => Hosted documentation
 ## 💻 Development Setup  
 1. Clone the repo:  
    ```bash
-   git clone https://github.com/yourusername/WeatherBand-API-Docs.git
+   git clone https://github.com/johnbeatty575/WeatherBand-API-Docs.git
    ```
 2. Test locally:  
    - Open `docs/index.html` in browser  

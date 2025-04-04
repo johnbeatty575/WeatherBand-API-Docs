@@ -1,14 +1,19 @@
-name: Deploy Docs
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ "main" ]  # Triggers on pushes to main branch
+    branches: ["main"]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Pages
@@ -17,7 +22,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: './docs'  # Your docs folder
+          path: './docs'
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v2

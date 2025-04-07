@@ -44,7 +44,7 @@
 
 ## Live Demo
 [Interactive Demo](https://johnbeatty575.github.io/WeatherBand-API-Docs/index.html)  
-[Documentation Hub](https://johnbeatty575.github.io/WeatherBand-API-Docs/index.md)
+<!--[Documentation Hub](https://johnbeatty575.github.io/WeatherBand-API-Docs/index.md) // working to repair endpoint-->
 
 ## 📚 Documentation  
 | Guide | Description |  
